@@ -13,14 +13,13 @@ commands:
     #           Select which channel in which to post to.
     #       type: string   
     steps:
-      - run:
-          name: Send Slack Notification
-          - slack/notify:
-              event: fail
-              template: basic_fail_1
-          - slack/notify:
-              event: pass
-              template: basic_success_1
+      - run: echo "Send Slack Notification"
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
