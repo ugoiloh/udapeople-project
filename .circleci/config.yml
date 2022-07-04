@@ -6,22 +6,20 @@ orbs:
 commands:
   send-notification:
     description: Send notification to slack when a job fails and succeeds.
-    parameters:
-      channel:
-          default: $SLACK_DEFAULT_CHANNEL 
-          description: |
-              Select which channel in which to post to.
-          type: string   
+    # parameters:
+    #   channel:
+    #       default: $SLACK_DEFAULT_CHANNEL 
+    #       description: |
+    #           Select which channel in which to post to.
+    #       type: string   
     steps:
       - run:
           name: Send Slack Notification
           command: |
             - slack/notify:
-                channel: <<parameters.channel>>
                 event: fail
                 template: basic_fail_1
             - slack/notify:
-                channel: <<parameters.channel>>
                 event: pass
                 template: basic_success_1
 
