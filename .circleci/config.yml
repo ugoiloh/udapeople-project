@@ -8,7 +8,7 @@ commands:
     description: Send notification to slack when a job fails and succeeds.
     parameters:
       channel:
-          default: "client/T03BV02D0EQ/C03DAJYL3SM"
+          default: "C03DAJYL3SM"
           description: |
               Select which channel in which to post to.
           type: string   
@@ -70,10 +70,11 @@ jobs:
             cd frontend
             npm install
             npm run build
+      - send-notification
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-      - send-notification
+      
 
   build-backend:
     docker:
@@ -88,10 +89,11 @@ jobs:
             cd backend
             npm install
             npm run build
+      - send-notification
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-      - send-notification
+      
 
   test-frontend:
     docker:
@@ -121,7 +123,7 @@ jobs:
             cd backend
             npm install
             npm run test
-      # - send-notification
+      - send-notification
             
   scan-frontend:
     docker:
