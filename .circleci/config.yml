@@ -8,7 +8,7 @@ commands:
     description: Send notification to slack when a job fails and succeeds.
     parameters:
       channel:
-          default: "C03DAJYL3SM"
+          default: $SLACK_DEFAULT_CHANNEL 
           description: |
               Select which channel in which to post to.
           type: string   
