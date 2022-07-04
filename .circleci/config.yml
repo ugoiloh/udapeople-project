@@ -8,7 +8,7 @@ commands:
     description: Send notification to slack when a job fails and succeeds.
     parameters:
       channel:
-          default: $SLACK_DEFAULT_CHANNEL
+          default: "client/T03BV02D0EQ/C03DAJYL3SM"
           description: |
               Select which channel in which to post to.
           type: string   
@@ -23,7 +23,7 @@ commands:
                 template: basic_fail_1
             - slack/notify:
                 event: pass
-                template: success_tagged_deploy_1
+                template: basic_success_1
 
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -106,6 +106,7 @@ jobs:
             cd frontend
             npm install
             npm run test
+      - send-notification
                 
   test-backend:
     docker:
@@ -120,6 +121,7 @@ jobs:
             cd backend
             npm install
             npm run test
+      - send-notification
             
   scan-frontend:
     docker:
