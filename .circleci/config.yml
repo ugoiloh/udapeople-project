@@ -5,21 +5,49 @@ orbs:
 
 commands:
   send-notification:
-    description: Send notification to slack when a job fails and succeeds.
-    # parameters:
-    #   channel:
-    #       default: $SLACK_DEFAULT_CHANNEL 
-    #       description: |
-    #           Select which channel in which to post to.
-    #       type: string   
+    description: Send custom notification to slack when a job fails and succeeds.   
     steps:
-      - run: echo "Send Slack Notification"
       - slack/notify:
           event: fail
-          template: basic_fail_1
+          mentions: "@UdaPeopleDevTeam"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "Hello *Udapeople Dev Team*, \n\n 
+                      This is to notify you that the job *${CIRCLE_JOB}* 
+                      with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* failed",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
       - slack/notify:
           event: pass
-          template: basic_success_1
+          mentions: "@UdaPeopleDevTeam"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "Hello *Udapeople Dev Team*, \n\n 
+                      This is to notify you that the job *${CIRCLE_JOB}* 
+                      with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* was a success
+                       *Url:* ${CIRCLE_BUILD_URL}",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
 
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
