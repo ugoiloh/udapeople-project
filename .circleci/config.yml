@@ -39,7 +39,7 @@ commands:
                     {
                       "type": "mrkdwn",
                       "text": "*Branch*: $CIRCLE_BRANCH"
-                    },
+                    }
                   ],
                   "accessory": {
                     "type": "image",
@@ -107,7 +107,7 @@ commands:
                     {
                       "type": "mrkdwn",
                       "text": "*Branch*: $CIRCLE_BRANCH"
-                    },
+                    }
                   ],
                   "accessory": {
                     "type": "image",
