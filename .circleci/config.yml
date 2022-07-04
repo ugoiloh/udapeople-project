@@ -33,36 +33,36 @@ commands:
                 }
               ]
             }
-          event: always
+          event: fail
           mentions: "@UdaPeopleDevTeam"
-      # - slack/notify:
-      #     event: pass
-      #     mentions: "@UdaPeopleDevTeam"
-      #     custom: |
-      #       {
-      #         "blocks": [
-      #           {
-      #             "type": "section",
-      #             "text": {
-      #               "type": "mrkdwn",
-      #               "text": "Current Job: $CIRCLE_JOB"
-      #             }
-      #           },
-      #           {
-      #             "type": "section",
-      #             "fields": [
-      #               {
-      #                 "type": "plain_text",
-      #                 "text": "Hello *Udapeople Dev Team*, \n\n 
-      #                 This is to notify you that the job *${CIRCLE_JOB}* 
-      #                 with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* was a success
-      #                  *Url:* ${CIRCLE_BUILD_URL}",
-      #                 "emoji": true
-      #               }
-      #             ]
-      #           }
-      #         ]
-      #       }
+      - slack/notify:
+          event: pass
+          mentions: "@UdaPeopleDevTeam"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Current Job: *$CIRCLE_JOB*"
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "Hello *Udapeople Dev Team*, \n\n This is to notify you that the job *$CIRCLE_JOB* with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* was a success \n\n *Url:*${CIRCLE_BUILD_URL}",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
 
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
