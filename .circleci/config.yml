@@ -10,54 +10,130 @@ commands:
       - slack/notify:
           custom: |
             {
+              "text": "CircleCI job Notification.",
               "blocks": [
                 {
-                  "type": "section",
+                  "type": "header",
                   "text": {
-                    "type": "mrkdwn",
-                    "text": "Current Job: *$CIRCLE_JOB*"
+                    "type": "plain_text",
+                    "text": "Job Failed. :red_circle:",
+                    "emoji": true
                   }
-                },
-                {
-                  "type": "divider"
                 },
                 {
                   "type": "section",
                   "fields": [
                     {
-                      "type": "plain_text",
-                      "text": "Hello *Udapeople Dev Team*, \n\n This is to notify you that the job *$CIRCLE_JOB* with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* failed \n\n *Url:*${CIRCLE_BUILD_URL}",
-                      "emoji": true
+                      "type": "mrkdwn",
+                      "text": "*Job*: ${CIRCLE_JOB}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project*: $CIRCLE_PROJECT_REPONAME"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Branch*: $CIRCLE_BRANCH"
+                    },
+                  ],
+                  "accessory": {
+                    "type": "image",
+                    "image_url": "https://cdn.freebiesupply.com/logos/large/2x/udacity-logo-png-transparent.png",
+                    "alt_text": "Udacity logo"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Mentions*: $SLACK_PARAM_MENTIONS"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
                     }
                   ]
                 }
               ]
             }
           event: fail
-          mentions: "@UdaPeopleDevTeam"
+          # mentions: "@UdaPeopleDevTeam"
       - slack/notify:
           event: pass
-          mentions: "@UdaPeopleDevTeam"
+          # mentions: "@UdaPeopleDevTeam"
           custom: |
             {
+              "text": "CircleCI job Notification.",
               "blocks": [
                 {
-                  "type": "section",
+                  "type": "header",
                   "text": {
-                    "type": "mrkdwn",
-                    "text": "Current Job: *$CIRCLE_JOB*"
+                    "type": "plain_text",
+                    "text": "Job Succeeded. :white_check_mark:",
+                    "emoji": true
                   }
-                },
-                {
-                  "type": "divider"
                 },
                 {
                   "type": "section",
                   "fields": [
                     {
-                      "type": "plain_text",
-                      "text": "Hello *Udapeople Dev Team*, \n\n This is to notify you that the job *$CIRCLE_JOB* with trigger name *${CIRCLE_USERNAME}*, committed to the repo *${CIRCLE_REPOSITORY_URL}* was a success \n\n *Url:*${CIRCLE_BUILD_URL}",
-                      "emoji": true
+                      "type": "mrkdwn",
+                      "text": "*Job*: ${CIRCLE_JOB}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project*: $CIRCLE_PROJECT_REPONAME"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Branch*: $CIRCLE_BRANCH"
+                    },
+                  ],
+                  "accessory": {
+                    "type": "image",
+                    "image_url": "https://cdn.freebiesupply.com/logos/large/2x/udacity-logo-png-transparent.png",
+                    "alt_text": "Udacity logo"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Mentions*: $SLACK_PARAM_MENTIONS"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
                     }
                   ]
                 }
