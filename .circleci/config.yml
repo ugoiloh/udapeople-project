@@ -237,7 +237,7 @@ jobs:
             cd backend
             npm install
             npm run test
-      - send-notification
+      # - send-notification
             
   scan-frontend:
     docker:
