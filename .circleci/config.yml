@@ -309,16 +309,16 @@ jobs:
 
     steps:
       - checkout
-      - run: apk add  --no-cache aws-cli tar gzip
-      - run: yum install -y tar gzip
       - add_ssh_keys:
           fingerprints: ["74:c4:c8:6c:7b:40:f5:a6:86:ba:44:8f:4e:8b:36:55"] 
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
             apk add --update ansible
+            apk add  --no-cache aws-cli tar gzip
+
+      - attach_workspace:
+          at: ~/
       - run:
           name: Configure server
           command: |
