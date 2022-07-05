@@ -295,11 +295,11 @@ jobs:
             aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
-              --output text >> ~/udapeople-project/.circleci/ansible/inventory.txt
+              --output text >> ~/project/.circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - udapeople-project/.circleci/ansible/inventory.txt
+            - -project/.circleci/ansible/inventory.txt
       - destroy-environment     
 
 #   configure-infrastructure:
