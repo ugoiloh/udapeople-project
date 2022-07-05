@@ -305,10 +305,10 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: python:3.7-alpine3.16
     steps:
       - checkout
-      - run: yum install -y tar gzip awscli
+      - run: apt install -y tar gzip awscli
       - add_ssh_keys:
           fingerprints: ["74:c4:c8:6c:7b:40:f5:a6:86:ba:44:8f:4e:8b:36:55"] 
       - attach_workspace:
