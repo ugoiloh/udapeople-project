@@ -316,7 +316,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            yum install -y tar gzip awscli
+      - run: yum install -y tar gzip awscli
       - run:
           name: Configure server
           command: |
