@@ -308,6 +308,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - run: yum install -y tar gzip awscli
       - add_ssh_keys:
           fingerprints: ["74:c4:c8:6c:7b:40:f5:a6:86:ba:44:8f:4e:8b:36:55"] 
       - attach_workspace:
@@ -316,7 +317,6 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-      - run: yum install -y tar gzip awscli
       - run:
           name: Configure server
           command: |
