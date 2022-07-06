@@ -24,18 +24,22 @@
     production: yes
     state: present
 
-- name: Zip Artifact
-  shell: |
-    cd backend
-    npm i
-    npm run build
-    cd ..
-    tar -C backend -czvf artifact.tar.gz .
-    cd .circleci/ansible
-    echo "Contents  of the inventory.txt file is -------"
-    cat inventory.txt
+# - name: Extract Artifact
+#   shell: |
+#     tar -C backend -czvf artifact.tar.gz .
 
-- name: Starting App
-  shell: |
+- name: "start app"
+  become: true
+  command: |
+    tar xzvf artifact.tar.gz
     pm2 stop default
+    cd artifact
     pm2 start npm -- start
+
+  # - name: "start app"
+  #   become: true
+  #   command: |
+  #     pm2 start -f ./main.js
+
+    args:
+      chdir: /home/ubuntu/udapeople/dist
