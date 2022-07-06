@@ -5,7 +5,7 @@
 - name: "copy backend archives"
   become: yes
   synchronize:
-    src: ./artifact.tar.gz
+    src: ../../
     dest: /home/ubuntu/uda_app
     recursive: true
 
