@@ -1,11 +1,25 @@
 ---
+- name: "show remote environment"
+    shell: env
+
+- name: "copy backend archives"
+  become: yes
+  synchronize:
+    src: ./artifact.tar.gz
+    dest: /home/ubuntu/uda_app
+    recursive: true
+
+  # - name: "copy node_modules"
+  #   become: yes
+  #   synchronize:
+  #     src: ../../backend/node_modules
+  #     dest: /home/ubuntu/uda_app
+  #     recursive: true
 - name: Extract Artifact
   shell: |
     tar xzvf artifact.tar.gz
-
-- name: cd artifact dir
-  shell: |
-    cd artifact
+  args:
+      chdir: /home/ubuntu/uda_app 
 
 - name: "stop previous app"
   become: true
@@ -17,4 +31,4 @@
   command: |
     pm2 start -f ./main.js
   args:
-      chdir: /home/ubuntu/dist
+      chdir: /home/ubuntu/uda_app/artifact/dist
