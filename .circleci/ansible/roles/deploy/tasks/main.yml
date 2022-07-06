@@ -31,8 +31,9 @@
 - name: "start app"
   become: true
   command: |
-    tar xzvf artifact.tar.gz
     pm2 stop default
+    ls -a
+    tar xzvf artifact.tar.gz
     cd artifact
     pm2 start npm -- start
 
