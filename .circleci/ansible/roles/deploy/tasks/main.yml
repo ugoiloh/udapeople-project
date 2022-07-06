@@ -5,7 +5,7 @@
 - name: "copy backend archives"
   become: yes
   synchronize:
-    src: ../../
+    src: ../../backend/dist
     dest: /home/ubuntu/uda_app
     recursive: true
 
@@ -19,7 +19,7 @@
   shell: |
     tar xzvf artifact.tar.gz
   args:
-      chdir: /home/ubuntu/uda_app 
+    chdir: /home/ubuntu/uda_app 
 
 - name: "stop previous app"
   become: true
@@ -31,4 +31,4 @@
   command: |
     pm2 start -f ./main.js
   args:
-      chdir: /home/ubuntu/uda_app/artifact/dist
+    chdir: /home/ubuntu/uda_app/dist/artifact
