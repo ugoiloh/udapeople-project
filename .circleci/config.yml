@@ -343,7 +343,7 @@ jobs:
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
               echo "DB migration was successful"
-              curl --secure https://kvdb.io/72vd4QF3J6RdodRpU7pSHV/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '2'
+              curl --insecure https://kvdb.io/72vd4QF3J6RdodRpU7pSHV/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '2'
             else
               echo "DB migration failed"
             fi
