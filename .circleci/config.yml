@@ -353,7 +353,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add  --no-cache aws-cli tar gzip npm nodejs
+            apk add  --no-cache aws-cli tar gzip npm nodejs curl
       - attach_workspace:
           at: ~/
       - run:
@@ -388,7 +388,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add  --no-cache aws-cli tar gzip npm nodejs
+            apk add  --no-cache aws-cli tar gzip npm nodejs curl
 
       - attach_workspace:
           at: ~/
