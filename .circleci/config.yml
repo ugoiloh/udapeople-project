@@ -339,6 +339,7 @@ jobs:
       - run:
           name: Send migration results to kvdb
           command: |
+            cat ~/project/backend/migrations_dump.txt
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
               echo "DB migration was successful"
@@ -356,7 +357,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add  --no-cache aws-cli tar gzip npm nodejs curl
+            apk add  --no-cache aws-cli tar gzip npm nodejs curl rsync
       - attach_workspace:
           at: ~/
       - run:
@@ -391,7 +392,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add  --no-cache aws-cli tar gzip npm nodejs curl
+            apk add  --no-cache aws-cli tar gzip npm nodejs curl rsync
 
       - attach_workspace:
           at: ~/
