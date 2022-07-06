@@ -343,6 +343,8 @@ jobs:
             then
               echo "DB migration was successful"
               curl https://kvdb.io/72vd4QF3J6RdodRpU7pSHV/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+            else
+              echo "DB migration failed"
             fi
 
   deploy-frontend:
